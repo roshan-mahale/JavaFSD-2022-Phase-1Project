@@ -50,6 +50,20 @@ public class LockedMe {
 		
 	}
     public static void deleteFile() {
+        Scanner obj = new Scanner(System.in);
+        String fileName;
+        System.out.println("Enter file name to deleted: ");
+        fileName =obj.nextLine();
+        File f = new File(projectFilesPath+"\\"+fileName);
+        
+        if ( f.exists()){
+            f.delete();
+            System.out.println("File delete Successfully");
+        } else{
+            System.out.println("File does not found");
+        }
+        
+
 		
 	}
     public static void SearchFiles() {
