@@ -1,5 +1,7 @@
+import java.io.File;
 public class LockedMe {
 
+    static final String projectFilesPath="D:\\Files";
 	public static void displayMenu() {
 		 System.out.println("===================================");
 	     System.out.println("\tWelcome To LockedMe.com");
@@ -13,6 +15,19 @@ public class LockedMe {
 	     System.out.println("************************************");
 	}
 	public static void getAllFiles() {
+		File file = new File(projectFilesPath);
+        String [] fileList = file.list();
+        for (var allfiles:fileList){
+            System.out.println(allfiles);
+        }
+	}
+    public static void addNewFile() {
+		
+	}
+    public static void deleteFile() {
+		
+	}
+    public static void SearchFiles() {
 		
 	}
 	
