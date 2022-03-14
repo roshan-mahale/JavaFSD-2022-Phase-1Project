@@ -24,8 +24,10 @@ public class LockedMe {
             System.out.println(allfiles);
         }
 	}
+    
     public static void addNewFile() {
-        Scanner obj = new Scanner(System.in);
+        try{
+            Scanner obj = new Scanner(System.in);
             //get file name from user
             String filename;
             System.out.println("Enter File name to added: ");
@@ -36,7 +38,7 @@ public class LockedMe {
             System.out.println("Enter no. of line want to write: ");
             linesCount = Integer.parseInt(obj.nextLine());
 
-           try{ FileWriter fw = new FileWriter(projectFilesPath+"\\"+filename+".txt");
+            FileWriter fw = new FileWriter(projectFilesPath+"\\"+filename+".txt");
 
             //read line by line from user
             for (int i=1; i<=linesCount; i++){
@@ -50,12 +52,7 @@ public class LockedMe {
         }
 		
 	}
-    public static void deleteFile() {
-        try{
-        Scanner obj = new Scanner(System.in);
-        String fileName;
-        System.out.println("Enter file name to deleted: ");
-        fileName =obj.nextLine();
+    public static boolean checkFileList(String fileName) {
         //case sensitive
         ArrayList<String> allFilesNames = new ArrayList<String>();
         File file = new File(projectFilesPath);
@@ -63,9 +60,17 @@ public class LockedMe {
         for (var allfiles:fileList){
             allFilesNames.add(allfiles);
         }
-        File f = new File(projectFilesPath+"\\"+fileName);
+        return (allFilesNames.contains(fileName));
         
-        if (allFilesNames.contains(fileName)){
+ }
+    public static void deleteFile() {
+        try{
+        Scanner obj = new Scanner(System.in);
+        String fileName;
+        System.out.println("Enter file name to deleted: ");
+        fileName =obj.nextLine();
+        File f = new File(projectFilesPath+"\\"+fileName);
+        if (checkFileList(fileName)){
             f.delete();
             System.out.println("File delete Successfully");
         } else{
@@ -79,29 +84,20 @@ public class LockedMe {
 		
 	}
     public static void SearchFiles() {
-        try{
+        try {
             Scanner obj = new Scanner(System.in);
             String fileName;
-            System.out.println("Enter file name to Searched: ");
+            System.out.println("Enter file name to be searched: ");
             fileName =obj.nextLine();
-            //case sensitive
-            ArrayList<String> allFilesNames = new ArrayList<String>();
-            File file = new File(projectFilesPath);
-            String [] fileList = file.list();
-            for (var allfiles:fileList){
-                allFilesNames.add(allfiles);
-            }
             File f = new File(projectFilesPath+"\\"+fileName);
-            
-            if (allFilesNames.contains(fileName)){
-                
-                System.out.println("File found Successfully");
+            if (checkFileList(fileName)){
+               System.out.println("File is available");
             } else{
                 System.out.println("File does not found");
             }
-        } catch(Exception Ex) {
-            System.out.println("Unable to delete file. Please contact developer.");
-    
+        }
+        catch(Exception Ex) {
+            System.out.println("Unable to find. Please contact developer");
         }
 		
 	}
