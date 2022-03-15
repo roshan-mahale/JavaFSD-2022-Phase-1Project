@@ -2,12 +2,16 @@ package com.LockedMe;
 import java.util.Scanner;
 
 public class App {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
     public static void main(String[] args) throws Exception {
         Scanner obj = new Scanner(System.in);
 	    int choice;
         do {
             LockedMe.displayMenu();
-            System.out.println("Enter Your Choice: ");
+            System.out.println(ANSI_YELLOW
+            + "Enter the choice"
+            + ANSI_RESET);
             choice = Integer.parseInt(obj.nextLine());
             
             switch (choice) {
